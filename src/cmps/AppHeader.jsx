@@ -10,11 +10,11 @@ export const AppHeader = () => {
 
     return <header className={navbar ? "app-header active" : "app-header"}>
         <section className="main-layout flex j-between a-center">
-            <div className="logo" onClick={()=>window.location.reload()}>
+            <div className="logo" onClick={() => window.location.reload()}>
                 <NavLink to="/">LOUDER</NavLink>
-                </div>
+            </div>
             <nav className="flex a-center">
-                <a href="https://github.com/tomleb3/beatit">
+                <a href="https://github.com/tomleb3/louder">
                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round"
                         strokeLinejoin="round" className="github-link" height="1.5em" width="1.5em">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35

@@ -1,36 +1,43 @@
-.recent-searches {
+.recent-searches-container {
     position: absolute;
     top: 60px;
     width: 100%;
+    left: 0;
     z-index: 1;
-    background-color: white;
-    border-inline-start: 1px solid lightgray;
-    border-inline-end: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
-    > button {
-        width: 100%;
-        padding: 10px;
-        display: block;
-        border: none;
-        background-color: transparent;
-        &.btn-search-item {
-            text-align: start;
-            > span {
-                color: #262626;
+    @media (max-width: $mobile-breakpoint) {
+        padding: 0 5px;
+    }
+    > .recent-searches {
+        border-radius: 5px;
+        background-color: white;
+        border-inline-start: 1px solid lightgray;
+        border-inline-end: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
+        > button {
+            width: 100%;
+            padding: 10px;
+            display: block;
+            border: none;
+            background-color: transparent;
+            &.btn-search-item {
+                text-align: start;
+                > span {
+                    color: #262626;
+                }
             }
-        }
-        &.btn-clear {
-            text-align: center;
-            color: white;
-            font-size: rem(14px);
-            font-weight: 600;
-            background-color: rgba(233, 39, 39, 0.644);
-        }
-        &:hover,
-        &:focus,
-        &:active {
-            > span {
-                color: $clr1;
+            &.btn-clear {
+                text-align: center;
+                color: white;
+                font-size: rem(14px);
+                font-weight: 600;
+                background-color: rgba(233, 39, 39, 0.644);
+            }
+            &:hover,
+            &:focus,
+            &:active {
+                > span {
+                    color: $clr1;
+                }
             }
         }
     }

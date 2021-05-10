@@ -1,14 +1,15 @@
 import { LongTxt } from "./LongTxt"
 import { utilService } from '../services/utilService'
 
-export const TrackDetails = ({ track }) => {
+export const TrackDetails = ({ trackState, onTogglePlay }) => {
 
-    console.log(track)
+    const { track, isPlaying } = trackState
     const svgBaseUrl = `${process.env.PUBLIC_URL}/assets/imgs`
 
     return <section className="track-details flex col">
         <div className="track-panel flex">
-            <img src={track.artwork_url} alt="" />
+            <img src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.svg`}
+                className={`${isPlaying ? '' : 'active'}`} onClick={() => onTogglePlay(true)} alt="" />
             <div className="flex col">
                 <header className="flex col">
                     <label>{track.title}</label>
@@ -19,7 +20,7 @@ export const TrackDetails = ({ track }) => {
                 </main>
                 <footer className="flex a-center">
                     <div className="flex a-center">
-                        <img className="clock-img" src={`${svgBaseUrl}/clock.png`} alt="" />
+                        <img className="clock-img" src={`${svgBaseUrl} /clock.png`} alt="" />
                         <span>{utilService.millisToMinsSecs(track.duration)}</span>
                     </div>
                     <div className="flex a-center">
@@ -27,9 +28,9 @@ export const TrackDetails = ({ track }) => {
                         <span>{track.favoritings_count}</span>
                     </div>
                 </footer>
-            </div>
-        </div>
-        <div className="user-panel flex col">
+            </div >
+        </div >
+        <div className="artist-panel flex col">
             <h4>Artist</h4>
             <div className="flex">
                 <img src={track.user.avatar_url} alt="" />

@@ -28,6 +28,7 @@
         background-color: transparent;
         position: absolute;
         right: 15px;
+        height: 100%;
         font-size: rem(14px);
         font-weight: 700;
         padding: 0;
@@ -35,6 +36,12 @@
         &.inactive {
             opacity: 0.3;
             pointer-events: none;
+        }
+    }
+    @media (max-width: $mobile-breakpoint) {
+        padding: 0 5px;
+        > button {
+            right: 20px;
         }
     }
 }

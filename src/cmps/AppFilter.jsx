@@ -9,11 +9,8 @@ export const AppFilter = ({ onSetFilter }) => {
     const STORAGE_KEY = 'SEARCHES'
     let recentSearches = utilService.loadFromStorage(STORAGE_KEY) || []
 
-    const handleChange = (ev, txt, go = false) => {
-        console.log(ev, txt, go)
+    const handleChange = (ev, txt) =>
         setFilterTxt(txt || ev.target.value)
-        if (go) onFilter(ev)
-    }
 
     const handleStorage = () => {
         if (recentSearches.length >= 5) recentSearches.pop()
@@ -21,8 +18,10 @@ export const AppFilter = ({ onSetFilter }) => {
         utilService.saveToStorage(STORAGE_KEY, recentSearches)
     }
 
-    const onClearSearches = () =>
+    const onClearSearches = () => {
+        setFilterTxt('')
         utilService.removeFromStorage(STORAGE_KEY)
+    }
 
     const onFilter = ev => {
         ev.preventDefault()
@@ -33,7 +32,7 @@ export const AppFilter = ({ onSetFilter }) => {
 
     return <form className="app-filter flex a-center" onSubmit={onFilter}>
         <input type="text" name="filter-input" value={filterTxt} onChange={handleChange} autoComplete="off"
-            onFocus={() => toggleShowRecents(true)} onBlur={() => setTimeout(() => toggleShowRecents(false), 100)} />
+            onFocus={() => toggleShowRecents(true)} onBlur={() => setTimeout(() => toggleShowRecents(false), 150)} />
         {recentSearches.length && showRecents ? <RecentSearches recentSearches={recentSearches}
             handleChange={handleChange} onClearSearches={onClearSearches} /> : null}
         <button type="submit" className={filterTxt ? '' : 'inactive'}>Find</button>
