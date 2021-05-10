@@ -1,0 +1,40 @@
+.app-filter {
+    margin-top: 25px;
+    position: relative;
+    > input {
+        padding: 0.9em 2.2em;
+        border-radius: 5px;
+        outline: none;
+        width: 100%;
+        font-size: rem(18px);
+        color: white;
+        background-color: transparent;
+        border: 1px solid #ffffff30;
+        transition: border-color 0.3s;
+        &:hover,
+        &:focus,
+        &:active {
+            border: 1px solid white;
+        }
+        &:focus,
+        &:active {
+            + .recent-searches {
+                display: block;
+            }
+        }
+    }
+    > button {
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        right: 15px;
+        font-size: rem(14px);
+        font-weight: 700;
+        padding: 0;
+        color: $clr1;
+        &.inactive {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    }
+}

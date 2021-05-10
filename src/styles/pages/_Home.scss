@@ -1,0 +1,20 @@
+.home {
+    > .result-bar {
+        height: 220px;
+        width: 100%;
+        line-height: 1.25;
+        padding-top: 94px;
+        background-color: #1d1e1f;
+        @media (max-width: $mobile-breakpoint) {
+            padding: 94px 10px 0;
+        }
+        small {
+            color: #7d7e7f;
+            font-size: rem(14px);
+        }
+        label {
+            color: #d6d6d6;
+            font-size: rem(36px);
+        }
+    }
+}

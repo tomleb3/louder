@@ -1,0 +1,38 @@
+.track-list-container {
+    margin: 30px 0 70px;
+    > .track-list {
+        &.grid-view {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            grid-gap: 1.5rem;
+            margin: 50px 0;
+        }
+        &.list-view {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    > .btns-container {
+        padding: 10px;
+        margin-top: 5px;
+        border-top: 1px solid lightgrey;
+        > button {
+            border: none;
+            background-color: transparent;
+            &.btn-grid img {
+                height: 20px;
+                filter: invert(1);
+            }
+            &.btn-list img {
+                height: 25px;
+                filter: invert(1);
+            }
+            &.btn-next {
+                color: white;
+                font-weight: 700;
+                margin-inline-start: auto;
+            }
+        }
+    }
+}

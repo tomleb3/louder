@@ -1,0 +1,73 @@
+.track-details {
+    margin: 30px 0 70px;
+    > .track-panel {
+        width: 100%;
+        padding-bottom: 70px;
+        border-bottom: 1px solid #7b7b7b;
+        > img {
+            height: 250px;
+            width: 250px;
+            margin-inline-end: 30px;
+        }
+        > div {
+            > header {
+                > * {
+                    margin-bottom: 15px;
+                }
+                > label {
+                    font-size: rem(32px);
+                }
+            }
+            > main {
+            }
+            > footer {
+                > div {
+                    &:not(:last-of-type) {
+                        margin-inline-end: 75px;
+                    }
+                    > img {
+                        margin-inline-end: 8px;
+                        filter: invert(1);
+                        &.clock-img {
+                            height: 16px;
+                        }
+                        &.fav-img {
+                            height: 18px;
+                        }
+                    }
+                    > span {
+                        font-size: rem(14px);
+                        color: #7d7e7f;
+                    }
+                }
+            }
+        }
+    }
+    > .user-panel {
+        margin-top: 30px;
+        > h4 {
+            margin-bottom: 15px;
+            color: #7d7e7f;
+        }
+        > div {
+            > img {
+                height: 100px;
+                width: 100px;
+                margin-inline-end: 30px;
+            }
+            > div {
+                > small {
+                    font-size: rem(22px);
+                }
+                > a > button {
+                    border: none;
+                    background-color: transparent;
+                    font-size: rem(20px);
+                    color: $clr1;
+                    font-weight: 700;
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

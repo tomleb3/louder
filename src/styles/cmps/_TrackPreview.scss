@@ -1,0 +1,76 @@
+.track-preview {
+    background-color: #1d1e1f;
+    line-height: 1.5;
+    border-radius: 2px;
+    border: 1px solid #1d1e1f;
+    transition: border-color 0.3s;
+    &:hover,
+    &:focus,
+    &:active {
+        border: 1px solid white;
+    }
+    * {
+        cursor: pointer;
+    }
+    > div {
+        > small {
+            font-size: rem(13px);
+            color: #7d7e7f;
+        }
+        > div > div {
+            &:not(:last-of-type) {
+                margin-inline-end: 75px;
+            }
+            > img {
+                margin-inline-end: 8px;
+                filter: invert(1);
+                &.clock-img {
+                    height: 16px;
+                }
+                &.fav-img {
+                    height: 18px;
+                }
+            }
+            > span {
+                font-size: rem(14px);
+                color: #7d7e7f;
+            }
+        }
+    }
+    &.grid-view {
+        > img {
+            width: 100%;
+            min-width: 200px;
+            min-height: 200px;
+        }
+        > div {
+            padding: 10px;
+            > label {
+                font-size: rem(14px);
+                margin-bottom: 10px;
+            }
+            > div {
+                width: 100%;
+                align-self: flex-start;
+                justify-content: space-between;
+            }
+        }
+    }
+    &.list-view {
+        display: flex;
+        margin-bottom: 20px;
+        > img {
+            width: 100px;
+        }
+        > div {
+            width: 100%;
+            padding: 14px 20px 10px 16px;
+            > label {
+                flex: 1;
+            }
+            @media (max-width: $mobile-breakpoint) {
+                padding: 8px;
+            }
+        }
+    }
+}
