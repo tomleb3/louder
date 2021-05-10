@@ -6,7 +6,7 @@ export const TrackPreview = ({ track, onSelectTrack, gridView }) => {
 
     return <article className={`track-preview pointer ${gridView ? 'grid-view' : 'list-view'}`}
         onClick={() => onSelectTrack(track)}>
-        <img src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.svg`} alt="" />
+        <img src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.png`} alt="" />
         <div className="flex col">
             <small>{track.user.username}</small>
             <label>{track.title}</label>

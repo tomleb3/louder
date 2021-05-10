@@ -33,7 +33,7 @@ export const MediaPlayer = ({ trackState, dockMode, onTogglePlay, onSwitchTrack 
         <div className="main-layout flex j-between a-center">
             <div className="flex grow a-center">
                 <img className="media-img" alt=""
-                    src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.svg`} />
+                    src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.png`} />
                 {trackExists ? <div className="flex col">
                     <label>{track.title}</label>
                     <small><span className="muted">by&nbsp;</span>{track.user.username}</small>

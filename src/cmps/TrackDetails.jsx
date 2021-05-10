@@ -8,7 +8,7 @@ export const TrackDetails = ({ trackState, onTogglePlay }) => {
 
     return <section className="track-details flex col">
         <div className="track-panel flex">
-            <img src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.svg`}
+            <img src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.png`}
                 className={`${isPlaying ? '' : 'active'}`} onClick={() => onTogglePlay(true)} alt="" />
             <div className="flex col">
                 <header className="flex col">
