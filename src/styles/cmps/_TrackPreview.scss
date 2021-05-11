@@ -4,10 +4,12 @@
     border-radius: 2px;
     border: 1px solid #1d1e1f;
     transition: border-color 0.3s;
-    &:hover,
-    &:focus,
-    &:active {
-        border: 1px solid white;
+    @media (min-width: $mobile-breakpoint) {
+        &:hover,
+        &:focus,
+        &:active {
+            border: 1px solid white;
+        }
     }
     * {
         cursor: pointer;
