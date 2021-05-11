@@ -30,7 +30,7 @@ export const AppFilter = ({ onSetFilter }) => {
         toggleShowRecents(false)
     }
 
-    return <form className="app-filter flex a-center" onSubmit={onFilter}>
+    return <form className="app-filter flex col a-center" onSubmit={onFilter}>
         <input type="text" name="filter-input" value={filterTxt} onChange={handleChange} autoComplete="off"
             onFocus={() => toggleShowRecents(true)} onBlur={() => setTimeout(() => toggleShowRecents(false), 150)} />
         {recentSearches.length && showRecents ? <RecentSearches recentSearches={recentSearches}
