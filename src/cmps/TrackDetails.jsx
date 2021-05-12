@@ -20,7 +20,7 @@ export const TrackDetails = ({ trackState, onTogglePlay }) => {
                 </main>
                 <footer className="flex a-center">
                     <div className="flex a-center">
-                        <img className="clock-img" src={`${svgBaseUrl} /clock.png`} alt="" />
+                        <img className="clock-img" src={`${svgBaseUrl}/clock.png`} alt="" />
                         <span>{utilService.millisToMinsSecs(track.duration)}</span>
                     </div>
                     <div className="flex a-center">

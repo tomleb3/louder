@@ -10,9 +10,10 @@ export const AppHeader = () => {
 
     return <header className={navbar ? "app-header active" : "app-header"}>
         <section className="main-layout flex j-between a-center">
-            <div className="logo" onClick={() => window.location.reload()}>
-                <NavLink to="/">LOUDER</NavLink>
-            </div>
+            <NavLink to="/" className="logo flex a-center" onClick={() => window.location.reload()}>
+                <img src={`${process.env.PUBLIC_URL}/favicon.png`} alt=""/>
+                <span>LOUDER</span>
+            </NavLink>
             <nav className="flex a-center">
                 <a href="https://github.com/tomleb3/louder">
                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round"

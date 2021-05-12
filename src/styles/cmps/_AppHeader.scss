@@ -18,6 +18,10 @@
         height: inherit;
         .logo {
             font-size: 1.5em;
+            > img {
+                height: 30px;
+                margin-inline-end: 15px;
+            }
         }
         nav {
             *:not(:last-child) {
