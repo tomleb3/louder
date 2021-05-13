@@ -40,6 +40,8 @@
         }
     }
     &.grid-view {
+        display: flex;
+        flex-direction: column;
         > img {
             width: 100%;
             min-width: 200px;
@@ -47,9 +49,11 @@
         }
         > div {
             padding: 10px;
+            flex: 1;
             > label {
                 font-size: rem(14px);
                 margin-bottom: 10px;
+                flex: 1;
             }
             > div {
                 width: 100%;
