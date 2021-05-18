@@ -26,6 +26,7 @@ export const TrackList = ({ tracks, onSelectTrack, onNextPage }) => {
             <button className="btn-grid" onClick={() => onToggleGridView(true)}>
                 <img src={`${svgBaseUrl}/grid.svg`} alt="grid" />
             </button>
+            <span></span>
             <button className="btn-list" onClick={() => onToggleGridView(false)}>
                 <img src={`${svgBaseUrl}/list.svg`} alt="list" />
             </button>

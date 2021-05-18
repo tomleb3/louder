@@ -16,6 +16,10 @@
         padding: 10px;
         margin-top: 5px;
         border-top: 1px solid lightgrey;
+        > span {
+            border-right: 1px solid lightgray;
+            margin: 0 5px;
+        }
         > button {
             border: none;
             background-color: transparent;
