@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export const AppHeader = () => {
 
     const [navbar, setNavbar] = useState(false)
     const changeBackground = () =>
-        window.scrollY >= 75 ? setNavbar(true) : setNavbar(false)
-    window.addEventListener('scroll', changeBackground)
+        window.scrollY >= 40 ? setNavbar(true) : setNavbar(false)
+
+    useEffect(() => {
+        window.addEventListener('scroll', changeBackground)
+        return () =>
+            window.removeEventListener('scroll', changeBackground)
+    }, [])
 
     return <header className={navbar ? "app-header active" : "app-header"}>
         <section className="main-layout flex j-between a-center">
             <NavLink to="/" className="logo flex a-center" onClick={() => window.location.reload()}>
-                <img src={`${process.env.PUBLIC_URL}/favicon.png`} alt=""/>
+                <img src={`${process.env.PUBLIC_URL}/favicon.png`} alt="" />
                 <span>LOUDER</span>
             </NavLink>
             <nav className="flex a-center">
