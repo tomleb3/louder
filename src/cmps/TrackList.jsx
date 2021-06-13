@@ -4,7 +4,7 @@ import { utilService } from '../services/utilService'
 
 export const TrackList = ({ tracks, onSelectTrack, onNextPage }) => {
 
-    const STORAGE_KEY = 'IS_GRID_MODE'
+    const STORAGE_KEY = 'is_grid_mode'
     const SVG_BASE_URL = `${process.env.PUBLIC_URL}/assets/imgs`
     const viewModeFromStorage = utilService.loadFromStorage(STORAGE_KEY)
     const [gridView, toggleGridView] = useState(viewModeFromStorage || false)
