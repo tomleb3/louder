@@ -1,5 +1,5 @@
 .track-list-container {
-    margin: 30px 0 70px;
+    margin: 30px 0 100px;
     > .track-list {
         &.grid-view {
             display: grid;
@@ -15,10 +15,13 @@
     > .btns-container {
         padding: 10px;
         margin-top: 5px;
-        border-top: 1px solid lightgrey;
+        border-top: 1px solid #7d7e7f;
+        @media (max-width: $mobile-breakpoint) {
+            margin: 0 10px;
+        }
         > span {
-            border-right: 1px solid lightgray;
-            margin: 0 5px;
+            border-right: 1px solid #7d7e7f;
+            margin: 0 10px;
         }
         > button {
             &.btn-grid img {
