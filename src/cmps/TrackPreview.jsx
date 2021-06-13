@@ -3,7 +3,7 @@ import { utilService } from '../services/utilService'
 export const TrackPreview = ({ track, onSelectTrack, gridView }) => {
 
     const SVG_BASE_URL = `${process.env.PUBLIC_URL}/assets/imgs`
-    const HIGH_RES_ARTWORK_URL = track?.artwork_url?.replace('-large.jpg', '-t300x300.jpg')
+    const HIGH_RES_ARTWORK_URL = track?.artwork_url?.replace('-large.jpg', '-t500x500.jpg')
 
     return <article className={`track-preview pointer ${gridView ? 'grid-view' : 'list-view'}`}
         onClick={() => onSelectTrack(track)}>
