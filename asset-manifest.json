@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/louder/static/css/main.d79930f7.chunk.css",
-    "main.js": "/louder/static/js/main.c71addfc.chunk.js",
-    "main.js.map": "/louder/static/js/main.c71addfc.chunk.js.map",
+    "main.css": "/louder/static/css/main.d31346e7.chunk.css",
+    "main.js": "/louder/static/js/main.325e04ac.chunk.js",
+    "main.js.map": "/louder/static/js/main.325e04ac.chunk.js.map",
     "runtime-main.js": "/louder/static/js/runtime-main.ed63f424.js",
     "runtime-main.js.map": "/louder/static/js/runtime-main.ed63f424.js.map",
-    "static/js/2.35add232.chunk.js": "/louder/static/js/2.35add232.chunk.js",
-    "static/js/2.35add232.chunk.js.map": "/louder/static/js/2.35add232.chunk.js.map",
+    "static/js/2.5a268a15.chunk.js": "/louder/static/js/2.5a268a15.chunk.js",
+    "static/js/2.5a268a15.chunk.js.map": "/louder/static/js/2.5a268a15.chunk.js.map",
     "static/js/3.b6e1c782.chunk.js": "/louder/static/js/3.b6e1c782.chunk.js",
     "static/js/3.b6e1c782.chunk.js.map": "/louder/static/js/3.b6e1c782.chunk.js.map",
     "index.html": "/louder/index.html",
     "service-worker.js": "/louder/service-worker.js",
     "service-worker.js.map": "/louder/service-worker.js.map",
-    "static/css/main.d79930f7.chunk.css.map": "/louder/static/css/main.d79930f7.chunk.css.map",
-    "static/js/2.35add232.chunk.js.LICENSE.txt": "/louder/static/js/2.35add232.chunk.js.LICENSE.txt"
+    "static/css/main.d31346e7.chunk.css.map": "/louder/static/css/main.d31346e7.chunk.css.map",
+    "static/js/2.5a268a15.chunk.js.LICENSE.txt": "/louder/static/js/2.5a268a15.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ed63f424.js",
-    "static/js/2.35add232.chunk.js",
-    "static/css/main.d79930f7.chunk.css",
-    "static/js/main.c71addfc.chunk.js"
+    "static/js/2.5a268a15.chunk.js",
+    "static/css/main.d31346e7.chunk.css",
+    "static/js/main.325e04ac.chunk.js"
   ]
 }
