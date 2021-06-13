@@ -5,7 +5,7 @@ import { utilService } from '../services/utilService'
 export const TrackList = ({ tracks, onSelectTrack, onNextPage }) => {
 
     const STORAGE_KEY = 'IS_GRID_MODE'
-    const svgBaseUrl = `${process.env.PUBLIC_URL}/assets/imgs`
+    const SVG_BASE_URL = `${process.env.PUBLIC_URL}/assets/imgs`
     const viewModeFromStorage = utilService.loadFromStorage(STORAGE_KEY)
     const [gridView, toggleGridView] = useState(viewModeFromStorage || false)
 
@@ -24,11 +24,11 @@ export const TrackList = ({ tracks, onSelectTrack, onNextPage }) => {
         </div>
         <div className="btns-container flex grow">
             <button className="btn-grid" onClick={() => onToggleGridView(true)}>
-                <img src={`${svgBaseUrl}/grid.svg`} alt="grid" />
+                <img src={`${SVG_BASE_URL}/grid.svg`} alt="grid" />
             </button>
             <span></span>
             <button className="btn-list" onClick={() => onToggleGridView(false)}>
-                <img src={`${svgBaseUrl}/list.svg`} alt="list" />
+                <img src={`${SVG_BASE_URL}/list.svg`} alt="list" />
             </button>
             <button className="btn-next" onClick={onNextPage}>Next</button>
         </div>

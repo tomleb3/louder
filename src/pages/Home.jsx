@@ -18,6 +18,7 @@ export const Home = () => {
         tracks: []
     })
     const { track } = trackState
+    const trackExists = track && Object.keys(track).length
 
     useEffect(() => {
         (async () => {
@@ -41,10 +42,10 @@ export const Home = () => {
 
     const onSelectTrack = selectedTrack => {
         setTrackState({
-            ...trackState,
+            isPlaying: true,
             track: selectedTrack
         })
-        trackDetailsRef.current.scrollIntoView({ behavior: 'smooth' })
+        scrollToTrackDetails()
     }
 
     const onTogglePlay = status => {
@@ -63,16 +64,19 @@ export const Home = () => {
         })
     }
 
-    const onSwitchTrack = direction => {
+    const onSwitchTrack = isDirectionNext => {
         const { tracks } = searchState
         const trackIdx = tracks.findIndex(_track => _track.id === track.id)
         setTrackState({
             ...trackState,
-            track: direction === 'next' ?
+            track: isDirectionNext ?
                 trackIdx === tracks.length - 1 ? tracks[trackIdx] : tracks[trackIdx + 1]
                 : trackIdx - 1 < 0 ? tracks[0] : tracks[trackIdx - 1]
         })
     }
+
+    const scrollToTrackDetails = () =>
+        trackDetailsRef.current.scrollIntoView()
 
     return <section className="home">
         <nav className="result-bar">
@@ -85,9 +89,11 @@ export const Home = () => {
             <div ref={trackDetailsRef}>
                 <AppFilter onSetFilter={onSetFilter} />
             </div>
-            {track && Object.keys(track).length ? <TrackDetails trackState={trackState} onTogglePlay={onTogglePlay} /> : null}
+            {trackExists ? <TrackDetails trackState={trackState} onTogglePlay={onTogglePlay} onSwitchTrack={onSwitchTrack} /> : null}
             <TrackList tracks={searchState.tracks} onSelectTrack={onSelectTrack} onNextPage={onNextPage} />
         </div>
-        <MediaPlayer trackState={trackState} onTogglePlay={onTogglePlay} onSwitchTrack={onSwitchTrack} />
+        <div className="media-player-container" onClick={trackExists && scrollToTrackDetails}>
+            <MediaPlayer trackState={trackState} onTogglePlay={onTogglePlay} onSwitchTrack={onSwitchTrack} />
+        </div>
     </section>
 }

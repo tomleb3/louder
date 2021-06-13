@@ -8,24 +8,28 @@ export const utilService = {
 }
 
 function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
 }
 
 function millisToMinsSecs(millis) {
     var mins = Math.floor(millis / 60000)
     var secs = ((millis % 60000) / 1000).toFixed(0)
-    return mins + ":" + (secs < 10 ? '0' : '') + secs
+    return (
+        secs === 60 ?
+            (mins + 1) + ":00"
+            : mins + ":" + (secs < 10 ? "0" : "") + secs
+    )
 }
 
 function makeId(length = 5) {
-    var txt = '';
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var txt = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    return txt;
+    return txt
 }
 
 function saveToStorage(key, val) {

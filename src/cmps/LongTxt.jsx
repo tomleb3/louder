@@ -4,9 +4,8 @@ export function LongTxt({ text }) {
 
     let desc = ''
     const [isLongTxtShown, toggleLongTextShown] = useState(false)
-
-    if (isLongTxtShown) desc = text
-    else desc = text.substring(0, 150)
+    
+    desc = isLongTxtShown ? text : text.substring(0, 150)
 
     return <div className={`fs14 ${desc.length >= 150 ? 'pointer' : ''}`}
         onClick={() => toggleLongTextShown(!isLongTxtShown)}>

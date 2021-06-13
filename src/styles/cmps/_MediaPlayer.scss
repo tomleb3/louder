@@ -5,28 +5,43 @@
     background-color: #333;
     position: fixed;
     bottom: 0;
-    > div > div {
-        > img.media-img {
-            height: 50px;
-            width: 50px;
-            margin-inline-end: 25px;
-            border-radius: 2px;
-            background-color: $clr-imgBackground;
-            object-fit: cover;
-        }
-    }
-    div.btn-container {
-        > button {
-            border: none;
-            background-color: transparent;
-            > img {
-                filter: invert(1);
-                height: 18px;
-                width: 18px;
+    > div.seekbar-container {
+        height: 5px;
+        position: relative;
+        > input[type="range"] {
+            height: 2px;
+            width: 100%;
+            position: absolute;
+            &::-webkit-slider-thumb {
+                visibility: hidden;
             }
         }
-        @media (max-width: $mobile-breakpoint) {
-            padding-inline-end: 10px;
+    }
+    > main {
+        > div {
+            > img.media-img {
+                height: 50px;
+                width: 50px;
+                margin-inline-end: 25px;
+                border-radius: 2px;
+                background-color: $clr-imgBackground;
+                object-fit: cover;
+            }
+        }
+        > div.btns-container {
+            > button {
+                &:not(:last-of-type) {
+                    margin-inline-end: 8px;
+                }
+                > img {
+                    filter: invert(1);
+                    height: 18px;
+                    width: 18px;
+                }
+            }
+            @media (max-width: $mobile-breakpoint) {
+                padding-inline-end: 10px;
+            }
         }
     }
 }

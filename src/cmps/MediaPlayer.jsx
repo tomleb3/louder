@@ -1,55 +1,73 @@
-import { useEffect, useRef } from "react"
+import { useContext, useEffect, useRef } from "react"
+import { PlayerContext } from '../App'
 
 export const MediaPlayer = ({ trackState, dockMode, onTogglePlay, onSwitchTrack }) => {
 
+    const { audioRef } = useContext(PlayerContext)
     const { track, isPlaying } = trackState
     const { PUBLIC_URL, REACT_APP_CLIENT_ID } = process.env
-    const svgBaseUrl = `${PUBLIC_URL}/assets/imgs`
-    let audioUrl = useRef()
+    const seekbarRef = useRef(null)
+    let seekbarInterval = null
     const trackExists = track && Object.keys(track).length
+    const SVG_BASE_URL = `${PUBLIC_URL}/assets/imgs`
 
     useEffect(() => {
-        (async () => trackState.isPlaying && await audioUrl.current.play())()
-    })
-
-    useEffect(() => {
-        onTogglePlay(false)
-        trackExists && onStopAudio()
-        audioUrl.current = new Audio(`${track.stream_url}?consumer_key=${REACT_APP_CLIENT_ID}`)
+        (async () => {
+            clearTimer()
+            trackExists && stopAudio()
+            audioRef.current = new Audio(`${track.stream_url}?consumer_key=${REACT_APP_CLIENT_ID}`)
+            trackExists && await audioRef.current.play()
+            audioRef.current.onended = () => onTrackEnd()
+            seekbarInterval = setInterval(() => {
+                seekbarRef.current.value = audioRef.current.currentTime * 1000
+            }, 100)
+        })()
     }, [track.stream_url])
 
-
     const togglePlay = () => {
-        isPlaying ? audioUrl.current.pause() : audioUrl.current.play()
+        isPlaying ? audioRef.current.pause() : audioRef.current.play()
         trackExists && onTogglePlay(!trackState.isPlaying)
     }
 
-    const onStopAudio = () => {
-        audioUrl.current.pause()
-        audioUrl.current.currentTime = 0
+    const stopAudio = () => {
+        audioRef.current.pause()
+        audioRef.current.currentTime = 0
+    }
+
+    const onTrackEnd = () => {
+        togglePlay()
+        onSwitchTrack(true)
+    }
+
+    const clearTimer = () => {
+        clearInterval(seekbarInterval)
+        seekbarInterval = null
     }
 
     return <article className={`media-player ${dockMode ? 'dock-mode' : ''}`}>
-        <div className="main-layout flex j-between a-center">
+        <div className="seekbar-container">
+            <input type="range" ref={seekbarRef} min={0} max={track.duration} />
+        </div>
+        <main className="main-layout flex j-between a-center">
             <div className="flex grow a-center">
-                <img className="media-img" alt=""
-                    src={track.artwork_url || `${svgBaseUrl}/track-img-fallback.png`} />
+                <img className="media-img" alt="Media Artwork"
+                    src={track.artwork_url || `${SVG_BASE_URL}/track-img-fallback.png`} />
                 {trackExists ? <div className="flex col">
                     <label>{track.title}</label>
                     <small><span className="muted">by&nbsp;</span>{track.user.username}</small>
                 </div> : null}
             </div>
-            <div className="btn-container flex">
-                <button onClick={() => onSwitchTrack('prev')}>
-                    <img src={`${svgBaseUrl}/btn-prev.png`} alt="" />
+            <div className="btns-container flex a-center">
+                <button onClick={() => onSwitchTrack(false)}>
+                    <img src={`${SVG_BASE_URL}/btn-prev.png`} alt="Previous" />
                 </button>
                 <button className={isPlaying ? 'btn-pause' : 'btn-play'} onClick={togglePlay}>
-                    <img src={`${svgBaseUrl}/${isPlaying ? 'btn-pause' : 'btn-play'}.png`} alt="" />
+                    <img src={`${SVG_BASE_URL}/${isPlaying ? 'btn-pause' : 'btn-play'}.png`} alt={isPlaying ? 'Pause' : 'Play'} />
                 </button>
-                <button onClick={() => onSwitchTrack('next')}>
-                    <img src={`${svgBaseUrl}/btn-next.png`} alt="" />
+                <button onClick={() => onSwitchTrack(true)}>
+                    <img src={`${SVG_BASE_URL}/btn-next.png`} alt="Next" />
                 </button>
             </div>
-        </div>
+        </main>
     </article>
 }

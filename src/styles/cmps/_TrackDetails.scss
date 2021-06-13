@@ -1,76 +1,125 @@
 .track-details {
-    margin: 30px 0 90px;
     @media (max-width: $mobile-breakpoint) {
-        padding: 0 10px;
+        padding-inline-start: 10px;
+        padding-inline-end: 10px;
     }
-    > .track-panel {
-        width: 100%;
-        gap: 1.5rem;
-        padding-bottom: 70px;
+    > main {
+        margin: 30px 0;
+        padding-bottom: 35px;
         border-bottom: 1px solid #7b7b7b;
         @media (max-width: $narrow-breakpoint) {
-            flex-direction: column;
+            padding-bottom: 70px;
         }
-        > img {
-            height: 250px;
-            width: 250px;
-            &.active:hover {
-                opacity: 0.5;
-                cursor: pointer;
+        > .track-panel {
+            width: 100%;
+            gap: 1.5rem;
+            padding-bottom: 35px;
+            @media (max-width: $narrow-breakpoint) {
+                flex-direction: column;
             }
-            animation: fadeIn ease 1s;
-            @keyframes fadeIn {
-                0% {
-                    opacity: 0;
+            > img {
+                height: 250px;
+                width: 250px;
+                animation: fadeIn ease 1s;
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
                 }
-                100% {
-                    opacity: 1;
+                @media (max-width: $mobile-breakpoint) {
+                    width: 100%;
+                    height: auto;
                 }
             }
-            @media (max-width: $mobile-breakpoint) {
-                width: 100%;
-                height: auto;
+            > div {
+                > header {
+                    > * {
+                        margin-bottom: 15px;
+                    }
+                    > label {
+                        font-size: rem(32px);
+                    }
+                }
+                > main {
+                    margin-bottom: 10px;
+                    @media (max-width: $narrow-breakpoint) {
+                        margin-bottom: 40px;
+                    }
+                }
+                > footer {
+                    .track-info-container {
+                        > div {
+                            &:not(:last-of-type) {
+                                margin-inline-end: 75px;
+                            }
+                            > img {
+                                margin-inline-end: 8px;
+                                filter: invert(1);
+                                &.clock-img {
+                                    height: 16px;
+                                }
+                                &.fav-img {
+                                    height: 18px;
+                                }
+                            }
+                            > span {
+                                font-size: rem(14px);
+                                color: #7d7e7f;
+                            }
+                        }
+                    }
+                }
             }
         }
-        > div {
-            > header {
-                > * {
-                    margin-bottom: 15px;
+        > .play-container {
+            position: relative;
+            > .btns-container > button {
+                &:not(:last-of-type) {
+                    margin-inline-end: 11px;
                 }
-                > label {
-                    font-size: rem(32px);
+                > img {
+                    filter: invert(1);
+                    height: 18px;
+                    width: 18px;
                 }
             }
-            > main {
+            > .seekbar-container {
+                width: 50%;
+                > input[type="range"] {
+                    margin: 0 15px;
+                    height: 2px;
+                    width: 100%;
+                    &::-webkit-slider-thumb {
+                        visibility: hidden;
+                        opacity: 0;
+                        height: 5px;
+                        width: 5px;
+                        transition: opacity 0.3s;
+                    }
+                    &:hover::-webkit-slider-thumb {
+                        visibility: unset;
+                        opacity: 1;
+                    }
+                }
                 @media (max-width: $narrow-breakpoint) {
-                    margin-bottom: 40px;
+                    position: absolute;
+                    bottom: -45px;
+                    width: 100%;
                 }
             }
-            > footer {
-                > div {
-                    &:not(:last-of-type) {
-                        margin-inline-end: 75px;
-                    }
-                    > img {
-                        margin-inline-end: 8px;
-                        filter: invert(1);
-                        &.clock-img {
-                            height: 16px;
-                        }
-                        &.fav-img {
-                            height: 18px;
-                        }
-                    }
-                    > span {
-                        font-size: rem(14px);
-                        color: #7d7e7f;
-                    }
+            > .volume-bar-container {
+                > input[type="range"] {
+                    height: 2px;
+                    margin-inline-start: 10px;
                 }
             }
         }
     }
     > .artist-panel {
-        margin-top: 30px;
+        margin-bottom: 50px;
         > h4 {
             margin-bottom: 15px;
             color: #7d7e7f;
@@ -86,12 +135,9 @@
                     font-size: rem(22px);
                 }
                 > a > button {
-                    border: none;
-                    background-color: transparent;
                     font-size: rem(20px);
                     color: $clr1;
                     font-weight: 700;
-                    padding: 0;
                 }
             }
         }
