@@ -1,43 +1,51 @@
 import { LongTxt } from "./LongTxt"
-import { utilService } from '../services/utilService'
 import { useContext, useEffect, useRef, useState } from "react"
 import { PlayerContext } from '../App'
+import { utilService } from '../services/utilService'
 
 export const TrackDetails = ({ trackState, onTogglePlay, onSwitchTrack }) => {
 
+    const VOLUME_STORAGE_KEY = 'volume'
     const { track, isPlaying } = trackState
     const { audioRef } = useContext(PlayerContext)
     const seekbarRef = useRef(null)
-    const [volume, setVolume] = useState(audioRef.current.volume)
+    const volumeFromStorage = utilService.loadFromStorage(VOLUME_STORAGE_KEY)
+    const [volume, setVolume] = useState(+volumeFromStorage || audioRef.current.volume)
     const currTimeLblRef = useRef(null)
-    let seekbarInterval = null
+    const seekbarInterval = useRef(null)
     const trackExists = track && Object.keys(track).length
     const SVG_BASE_URL = `${process.env.PUBLIC_URL}/assets/imgs`
     const HIGH_RES_ARTWORK_URL = track?.artwork_url?.replace('-large.jpg', '-t500x500.jpg')
 
     useEffect(() => {
-        seekbarInterval = setInterval(() => {
+        seekbarInterval.current = setInterval(() => {
             const currTimeSecs = audioRef.current.currentTime * 1000
             seekbarRef.current.value = currTimeSecs
             currTimeLblRef.current.innerText = utilService.millisToMinsSecs(currTimeSecs)
         }, 100)
         return () => {
-            clearInterval(seekbarInterval)
-            seekbarInterval = null
+            clearTimer()
         }
-    }, [])
+    }, [audioRef])
 
     const handleSeekbar = ev =>
         audioRef.current.currentTime = ev.target.value / 1000
 
     const handleVolumeBar = ev => {
-        audioRef.current.volume = ev.target.value
-        setVolume(+ev.target.value)
+        const newVol = ev.target.value
+        audioRef.current.volume = +newVol
+        setVolume(+newVol)
+        utilService.saveToStorage(VOLUME_STORAGE_KEY, newVol)
     }
 
     const togglePlay = () => {
         isPlaying ? audioRef.current.pause() : audioRef.current.play()
         trackExists && onTogglePlay(!trackState.isPlaying)
+    }
+
+    const clearTimer = () => {
+        clearInterval(seekbarInterval.current)
+        seekbarInterval.current = null
     }
 
     const volumeBarSvg = () => {

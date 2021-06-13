@@ -6,8 +6,8 @@ export const AppFilter = ({ onSetFilter }) => {
 
     const [filterTxt, setFilterTxt] = useState('')
     const [showRecents, toggleShowRecents] = useState(false)
-    const STORAGE_KEY = 'SEARCHES'
-    let recentSearches = utilService.loadFromStorage(STORAGE_KEY) || []
+    const SEARCHES_STORAGE_KEY = 'searches'
+    let recentSearches = utilService.loadFromStorage(SEARCHES_STORAGE_KEY) || []
 
     const handleChange = (ev, txt) =>
         setFilterTxt(txt || ev.target.value)
@@ -15,12 +15,12 @@ export const AppFilter = ({ onSetFilter }) => {
     const handleStorage = () => {
         if (recentSearches.length >= 5) recentSearches.pop()
         recentSearches.unshift(filterTxt)
-        utilService.saveToStorage(STORAGE_KEY, recentSearches)
+        utilService.saveToStorage(SEARCHES_STORAGE_KEY, recentSearches)
     }
 
     const onClearSearches = () => {
         setFilterTxt('')
-        utilService.removeFromStorage(STORAGE_KEY)
+        utilService.removeFromStorage(SEARCHES_STORAGE_KEY)
     }
 
     const onFilter = ev => {

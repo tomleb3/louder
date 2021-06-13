@@ -1,13 +1,16 @@
 import { useContext, useEffect, useRef } from "react"
 import { PlayerContext } from '../App'
+import { utilService } from '../services/utilService'
 
 export const MediaPlayer = ({ trackState, dockMode, onTogglePlay, onSwitchTrack }) => {
 
+    const VOLUME_STORAGE_KEY = 'volume'
     const { audioRef } = useContext(PlayerContext)
     const { track, isPlaying } = trackState
     const { PUBLIC_URL, REACT_APP_CLIENT_ID } = process.env
     const seekbarRef = useRef(null)
-    let seekbarInterval = null
+    const seekbarInterval = useRef(null)
+    const volumeFromStorage = utilService.loadFromStorage(VOLUME_STORAGE_KEY)
     const trackExists = track && Object.keys(track).length
     const SVG_BASE_URL = `${PUBLIC_URL}/assets/imgs`
 
@@ -17,11 +20,15 @@ export const MediaPlayer = ({ trackState, dockMode, onTogglePlay, onSwitchTrack 
             trackExists && stopAudio()
             audioRef.current = new Audio(`${track.stream_url}?consumer_key=${REACT_APP_CLIENT_ID}`)
             trackExists && await audioRef.current.play()
+            audioRef.current.volume = volumeFromStorage || 1
             audioRef.current.onended = () => onTrackEnd()
-            seekbarInterval = setInterval(() => {
+            seekbarInterval.current = setInterval(() => {
                 seekbarRef.current.value = audioRef.current.currentTime * 1000
             }, 100)
         })()
+        return () => {
+            clearTimer()
+        }
     }, [track.stream_url])
 
     const togglePlay = () => {
@@ -40,8 +47,8 @@ export const MediaPlayer = ({ trackState, dockMode, onTogglePlay, onSwitchTrack 
     }
 
     const clearTimer = () => {
-        clearInterval(seekbarInterval)
-        seekbarInterval = null
+        clearInterval(seekbarInterval.current)
+        seekbarInterval.current = null
     }
 
     return <article className={`media-player ${dockMode ? 'dock-mode' : ''}`}>
